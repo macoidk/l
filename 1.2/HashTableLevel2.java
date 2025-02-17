@@ -14,7 +14,6 @@ public class HashTableLevel2 {
         return (int) (size * frac);
     }
 
-    // Insert with quadratic probing
     public boolean insert(Square square) {
         int initialIndex = hash(square.getArea());
         int index = initialIndex;
@@ -26,7 +25,7 @@ public class HashTableLevel2 {
         while (table[searchIndex] != null) {
             if (Math.abs(table[searchIndex].getArea() - square.getArea()) < 0.0001 &&
                 Math.abs(table[searchIndex].getPerimeter() - square.getPerimeter()) < 0.0001) {
-                return false; // Елемент вже існує
+                return false; 
             }
             
             searchAttempt++;
@@ -39,10 +38,10 @@ public class HashTableLevel2 {
 
         while (table[index] != null) {
             i++;
-            index = (initialIndex + i * i) % size; // Quadratic probing
+            index = (initialIndex + i * i) % size; 
 
             if (i >= size) {
-                return false; // Table is full or can't resolve collision
+                return false; 
             }
         }
 
