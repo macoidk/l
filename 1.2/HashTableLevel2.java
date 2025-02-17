@@ -20,6 +20,23 @@ public class HashTableLevel2 {
         int index = initialIndex;
         int i = 0;
 
+        int searchIndex = initialIndex;
+        int searchAttempt = 0;
+        
+        while (table[searchIndex] != null) {
+            if (Math.abs(table[searchIndex].getArea() - square.getArea()) < 0.0001 &&
+                Math.abs(table[searchIndex].getPerimeter() - square.getPerimeter()) < 0.0001) {
+                return false; // Елемент вже існує
+            }
+            
+            searchAttempt++;
+            searchIndex = (initialIndex + searchAttempt * searchAttempt) % size;
+            
+            if (searchAttempt >= size) {
+                break;
+            }
+        }
+
         while (table[index] != null) {
             i++;
             index = (initialIndex + i * i) % size; // Quadratic probing
